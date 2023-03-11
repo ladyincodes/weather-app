@@ -1,11 +1,18 @@
-body {
-    min-width: 400px;
-}
-
 .fixed-container {
-    max-width: 700px;
-    background: #f7f7f7;
+    max-width: 500px;
+    /* background: #f7f7f7; */
     padding: 20px 20px;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-icon {
+    font-size: 30px;
+
+}
+
+.next-days-title {}
+
+.next-days-tempreture {
+    font-size: 12px;
 }
