@@ -11,8 +11,29 @@
 
 }
 
+.current-tempreture {}
+
+.weather-situation {
+    font-size: small;
+}
+
+.todays-forcast {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.observations {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.observations p {
+    max-height: 5px;
+    font-size: small;
+}
+
 .next-days-title {}
 
-.next-days-tempreture {
-    font-size: 12px;
-}
+.next-days-tempreture {}

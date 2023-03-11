@@ -19,46 +19,56 @@
   </head>
   <body>
     <div class="container fixed-container">
-      <form>
-        <div class="row">
-          <div class="col-sm-9">
-            <input
-              type="text"
-              class="form-control"
-              id="cityName"
-              placeholder="Enter the city name"
-            />
+      <div class="search mt-4">
+        <form>
+          <div class="row">
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                id="cityName"
+                placeholder="Enter the city name"
+              />
+            </div>
+            <div class="col-sm-3 mt-2 mt-sm-0">
+              <button type="submit" class="btn btn-primary form-control">
+                Search
+              </button>
+            </div>
           </div>
-          <div class="col-sm-3 mt-2 mt-sm-0">
-            <button type="submit" class="btn btn-primary form-control">
-              Search
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
 
-      <div class="todays-forcast">
+      <div class="todays-forcast mt-4 mb-6">
         <div class="current-weather">
-          <h2 class="city-title">Auckland</h2>
-          <p class="weather-situation">Mostly Clear</p>
-          <p class="current-tempreture">
+          <h2 class="city-title display-4 mb-0">Auckland</h2>
+          <p class="weather-situation lead text-muted mt-0 pt-0 pb-0">
+            Mostly Clear
+          </p>
+          <p class="current-tempreture display-4">
             <i class="fa-solid fa-moon"></i>
             <span>20°C</span>
           </p>
         </div>
+
+        <div class="observations lead text-muted text-end mt-2">
+          <p class="current-date">Saturday 4 March</p>
+          <p class="precipitation">Precipitation: 0%</p>
+          <p class="wind">Wind: 28 km</p>
+        </div>
       </div>
 
-      <div class="next-days-forcast m-3">
-        <div class="row text-center">
+      <div class="next-days-forcast">
+        <div class="row text-center mt-4 mb-4">
           <div class="col">
             <p class="card-title">Sat</p>
             <i class="fa-solid fa-sun weather-icon m-2" alt="sunny"></i>
-            <p class="card-text next-days-tempreture">25°C</p>
+            <p class="card-text next-days-tempreture small">25°C</p>
           </div>
           <div class="col">
             <p class="card-title">Sun</p>
             <i class="fa-solid fa-sun weather-icon m-2" alt="sunny"></i>
-            <p class="card-text next-days-tempreture">24°C</p>
+            <p class="card-text next-days-tempreture small">24°C</p>
           </div>
           <div class="col">
             <p class="card-title">Mon</p>
@@ -66,7 +76,7 @@
               class="fa-solid fa-cloud-sun-rain weather-icon m-2"
               alt="cloudy-rainy"
             ></i>
-            <p class="card-text next-days-tempreture">23°C</p>
+            <p class="card-text next-days-tempreture small">23°C</p>
           </div>
           <div class="col">
             <p class="card-title">Tue</p>
@@ -74,12 +84,12 @@
               class="fa-solid fa-cloud-showers-heavy weather-icon m-2"
               alt="rainy"
             ></i>
-            <p class="card-text next-days-tempreture">22°C</p>
+            <p class="card-text next-days-tempreture small">22°C</p>
           </div>
           <div class="col">
             <p class="card-title">Wed</p>
             <i class="fa-solid fa-cloud-sun weather-icon m-2" alt="cloudy"></i>
-            <p class="card-text next-days-tempreture">24°C</p>
+            <p class="card-text next-days-tempreture small">24°C</p>
           </div>
         </div>
       </div>
