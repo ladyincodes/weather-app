@@ -15,8 +15,6 @@ body {
 
 }
 
-.current-tempreture {}
-
 .weather-situation {
     font-size: small;
 }
@@ -37,7 +35,3 @@ body {
     max-height: 5px;
     font-size: small;
 }
-
-.next-days-title {}
-
-.next-days-tempreture {}
