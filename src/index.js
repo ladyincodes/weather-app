@@ -21,4 +21,33 @@ let weather = {
   },
 };
 
-// write your code here
+function checkCity(city) {
+  for (let prop in weather) {
+    if (prop === city) {
+      return true;
+    }
+  }
+}
+
+function printInfo(city) {
+  let fahrenheit = Math.round(weather[city].temp * 1.8 + 32);
+  let cityName = city.charAt(0).toUpperCase() + city.slice(1);
+
+  alert(
+    `It is currently ${Math.round(
+      weather[city].temp
+    )}°C (${fahrenheit}°F) in ${cityName} with a humidity of ${
+      weather[city].humidity
+    }%`
+  );
+}
+
+let city = prompt("Enter a city:").trim().toLowerCase();
+
+if (checkCity(city)) {
+  printInfo(city);
+} else {
+  alert(
+    "Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+sydney"
+  );
+}
