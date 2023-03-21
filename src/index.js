@@ -30,15 +30,13 @@ function checkCity(city) {
 }
 
 function printInfo(city) {
-  let fahrenheit = Math.round(weather[city].temp * 1.8 + 32);
+  let temprature = weather[city].temp;
+  let celsius = Math.round(temprature);
+  let fahrenheit = Math.round(celsius * 1.8 + 32);
   let cityName = city.charAt(0).toUpperCase() + city.slice(1);
 
   alert(
-    `It is currently ${Math.round(
-      weather[city].temp
-    )}°C (${fahrenheit}°F) in ${cityName} with a humidity of ${
-      weather[city].humidity
-    }%`
+    `It is currently ${celsius}°C (${fahrenheit}°F) in ${cityName} with a humidity of ${weather[city].humidity}%`
   );
 }
 
