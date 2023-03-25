@@ -6,6 +6,11 @@ ul {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+}
+
 .fixed-container {
     max-width: 600px;
     background: #fff;
@@ -25,8 +30,7 @@ ul {
 
 .todays-forcast {
     position: relative;
-    top: 0;
-    left: 0;
+
 }
 
 .observations {
@@ -37,4 +41,12 @@ ul {
 
 .observations li {
     font-size: small;
+}
+
+.current-tempreture {
+    position: relative;
+}
+
+.tempreture-unit {
+    position: absolute;
 }
