@@ -63,9 +63,71 @@ function searchCity(event) {
   }
 }
 
+// update the selecte city tempreture
+function updateTempreture() {
+  disableCelsiusTempreture();
+}
+
+// change current fahrenheit tempreture to celsius
+function updateToCelsius() {
+  disableCelsiusTempreture();
+
+  // update temreture from F to C
+  let currentTempreture = document.querySelector("#current-tempreture");
+  let celsiusTempreture = Math.round((currentTempreture.innerHTML - 32) / 1.8);
+  currentTempreture.innerHTML = celsiusTempreture;
+}
+
+// disable Celsius tempreture link when it's showing the Celsius unit
+function disableCelsiusTempreture() {
+  // added selected class and disabled celsius href
+  let celsiusLink = document.querySelector("#celsius");
+  celsiusLink.classList.add("selected_tempreture");
+  document.getElementById("celsius").removeAttribute("href");
+
+  // removed selected class and enabled fahrenheit href
+  let fahrenheitLink = document.querySelector("#fahrenheit");
+  fahrenheitLink.classList.remove("selected_tempreture");
+  fahrenheitLink.setAttribute("href", "#");
+}
+
+// change current celsius tempreture to fahrenheit
+function updateToFahrenheit() {
+  disableFahrenheitTempreture();
+
+  // update temreture
+  let currentTempreture = document.querySelector("#current-tempreture");
+  let fahrenheitTempreture = Math.round(currentTempreture.innerHTML * 1.8 + 32);
+  currentTempreture.innerHTML = fahrenheitTempreture;
+}
+
+// disable Fahrenheit tempreture link when it's showing the in Fahrenheit unit
+function disableFahrenheitTempreture() {
+  // added selected class and disabled fahrenheit href
+  let fahrenheitLink = document.querySelector("#fahrenheit");
+  fahrenheitLink.classList.add("selected_tempreture");
+  document.getElementById("fahrenheit").removeAttribute("href");
+
+  // removed selected class and enabled celsius href
+  let celsiusLink = document.querySelector("#celsius");
+  celsiusLink.classList.remove("selected_tempreture");
+  celsiusLink.setAttribute("href", "#");
+}
+
 // updates the current date and time on the page load
 updateDate();
+
+// updates the tempreture
+updateTempreture();
 
 // update city name after pressing search
 let searchForm = document.querySelector(".search-form");
 searchForm.addEventListener("submit", searchCity);
+
+// change tempreture to Fahrenheit
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", updateToFahrenheit);
+
+// change tempreture to Celsius
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", updateToCelsius);
