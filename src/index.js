@@ -42,5 +42,30 @@ function updateDate() {
   currentDate.innerHTML = `${weekDay} ${dayOfMonth} ${month}, ${currentTime}`;
 }
 
+// search for the entered city
+function searchCity(event) {
+  event.preventDefault();
+  let enteredCityName = document.querySelector("#entered-city-name");
+  let cityTitle = document.querySelector("#city-title");
+
+  // check if the entered value isn't null
+  if (enteredCityName.value) {
+    // change the first char of the city name to uppercase
+    let formattedCityTitle =
+      enteredCityName.value.charAt(0).toUpperCase() +
+      enteredCityName.value.slice(1);
+
+    // update city title
+    cityTitle.innerHTML = formattedCityTitle;
+
+    // empty the search box
+    enteredCityName.value = null;
+  }
+}
+
 // updates the current date and time on the page load
 updateDate();
+
+// update city name after pressing search
+let searchForm = document.querySelector(".search-form");
+searchForm.addEventListener("submit", searchCity);

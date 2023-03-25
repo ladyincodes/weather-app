@@ -21,13 +21,13 @@
     <div class="container shadow-sm fixed-container">
       <!---------- SEARCH BOX ---------->
       <div class="search mt-2">
-        <form>
+        <form class="search-form">
           <div class="row">
             <div class="col-sm-9">
               <input
                 type="text"
                 class="form-control"
-                id="cityName"
+                id="entered-city-name"
                 placeholder="Enter the city name"
                 autofocus="on"
               />
@@ -44,7 +44,7 @@
       <!---------- TODAY'S FORCAST FOR THE ENTERED CITY ---------->
       <div class="todays-forcast mt-4 mb-6">
         <div class="current-weather">
-          <h2 class="city-title display-6 mb-0">Auckland</h2>
+          <h2 class="city-title display-6 mb-0" id="city-title">Auckland</h2>
           <p class="weather-situation lead text-muted mt-0 pt-0">
             Mostly Clear
           </p>
