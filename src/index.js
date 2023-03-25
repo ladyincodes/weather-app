@@ -35,7 +35,16 @@ function updateDate() {
   let month = months[now.getMonth()];
 
   // setup current hour and minute
-  let currentTime = `${now.getHours()}:${now.getMinutes()}`;
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let currentTime = `${hour}:${minute}`;
 
   // update the current date and time using innerHTML
   let currentDate = document.querySelector("#current-date");
