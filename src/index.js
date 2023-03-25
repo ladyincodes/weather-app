@@ -48,19 +48,19 @@ function searchCity(event) {
   let enteredCityName = document.querySelector("#entered-city-name");
   let cityTitle = document.querySelector("#city-title");
 
+  let cityName = enteredCityName.value.trim();
+
   // check if the entered value isn't null
-  if (enteredCityName.value) {
+  if (cityName) {
     // change the first char of the city name to uppercase
     let formattedCityTitle =
-      enteredCityName.value.charAt(0).toUpperCase() +
-      enteredCityName.value.slice(1);
+      cityName.charAt(0).toUpperCase() + cityName.slice(1);
 
     // update city title
     cityTitle.innerHTML = formattedCityTitle;
-
-    // empty the search box
-    enteredCityName.value = null;
   }
+  // empty the search box
+  enteredCityName.value = null;
 }
 
 // update the selecte city tempreture
@@ -114,12 +114,6 @@ function disableFahrenheitTempreture() {
   celsiusLink.setAttribute("href", "#");
 }
 
-// updates the current date and time on the page load
-updateDate();
-
-// updates the tempreture
-updateTempreture();
-
 // update city name after pressing search
 let searchForm = document.querySelector(".search-form");
 searchForm.addEventListener("submit", searchCity);
@@ -131,3 +125,9 @@ fahrenheit.addEventListener("click", updateToFahrenheit);
 // change tempreture to Celsius
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", updateToCelsius);
+
+// updates the current date and time on the page load
+updateDate();
+
+// updates the tempreture
+updateTempreture();
