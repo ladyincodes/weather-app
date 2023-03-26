@@ -76,16 +76,19 @@ function disableCelsiusTempreture() {
   celsiusLink.classList.add("selected_tempreture");
   document.getElementById("celsius").removeAttribute("href");
 
+  celsiusLink.removeEventListener("click", updateToCelsius);
+
   // removed selected class and enabled fahrenheit href
   let fahrenheitLink = document.querySelector("#fahrenheit");
   fahrenheitLink.classList.remove("selected_tempreture");
   fahrenheitLink.setAttribute("href", "#");
+
+  fahrenheitLink.addEventListener("click", updateToFahrenheit);
 }
 
 // change current celsius tempreture to fahrenheit
 function updateToFahrenheit(event) {
   event.preventDefault();
-
   disableFahrenheitTempreture();
 
   // update temreture
@@ -102,10 +105,14 @@ function disableFahrenheitTempreture() {
   fahrenheitLink.classList.add("selected_tempreture");
   document.getElementById("fahrenheit").removeAttribute("href");
 
+  fahrenheitLink.removeEventListener("click", updateToFahrenheit);
+
   // removed selected class and enabled celsius href
   let celsiusLink = document.querySelector("#celsius");
   celsiusLink.classList.remove("selected_tempreture");
   celsiusLink.setAttribute("href", "#");
+
+  celsiusLink.addEventListener("click", updateToCelsius);
 }
 
 // update city name after pressing search
