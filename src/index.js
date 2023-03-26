@@ -14,26 +14,6 @@ function updateDate() {
   ];
   let weekDay = weekDays[now.getDay()];
 
-  // setup current date of the month
-  let dayOfMonth = now.getDate();
-
-  // setup current month
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let month = months[now.getMonth()];
-
   // setup current hour and minute
   let minute = now.getMinutes();
   if (minute < 10) {
@@ -48,7 +28,7 @@ function updateDate() {
 
   // update the current date and time using innerHTML
   let currentDate = document.querySelector("#current-date");
-  currentDate.innerHTML = `${weekDay} ${dayOfMonth} ${month}, ${currentTime}`;
+  currentDate.innerHTML = `${weekDay} ${currentTime}`;
 }
 
 // search for the entered city
@@ -78,12 +58,14 @@ function updateTempreture() {
 }
 
 // change current fahrenheit tempreture to celsius
-function updateToCelsius() {
+function updateToCelsius(event) {
+  event.preventDefault();
   disableCelsiusTempreture();
 
   // update temreture from F to C
   let currentTempreture = document.querySelector("#current-tempreture");
-  let celsiusTempreture = Math.round((currentTempreture.innerHTML - 32) / 1.8);
+  let tempreture = Number(currentTempreture.innerHTML);
+  let celsiusTempreture = Math.round((tempreture - 32) / 1.8);
   currentTempreture.innerHTML = celsiusTempreture;
 }
 
@@ -101,12 +83,15 @@ function disableCelsiusTempreture() {
 }
 
 // change current celsius tempreture to fahrenheit
-function updateToFahrenheit() {
+function updateToFahrenheit(event) {
+  event.preventDefault();
+
   disableFahrenheitTempreture();
 
   // update temreture
   let currentTempreture = document.querySelector("#current-tempreture");
-  let fahrenheitTempreture = Math.round(currentTempreture.innerHTML * 1.8 + 32);
+  let tempreture = Number(currentTempreture.innerHTML);
+  let fahrenheitTempreture = Math.round(tempreture * 1.8 + 32);
   currentTempreture.innerHTML = fahrenheitTempreture;
 }
 
