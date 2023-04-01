@@ -1,3 +1,34 @@
+let apiKey = "7746bdeabca928cfedcad71e52fd9d66";
+let apiEndPoint = `https://api.openweathermap.org/data/2.5/weather?`;
+let units = "metric";
+let city = "New York";
+
+// update city name's field info
+function updateCurrentCityTitleField() {
+  let currentCityField = document.querySelector("#city-title");
+  currentCityField.innerHTML = city;
+}
+
+// update tempreture's field info
+function updateCurrentTempretureField(tempreture) {
+  let currentTempretureField = document.querySelector("#current-tempreture");
+  currentTempretureField.innerHTML = tempreture;
+
+  updateCurrentCityTitleField();
+}
+
+// get city's information from openweathermap.org
+function searchCityInfo(response) {
+  let tempreture = Math.round(response.data.main.temp);
+  updateCurrentTempretureField(tempreture);
+}
+
+// loads the page by a default city
+function updateDataOnLoad() {
+  let apiUrl = `${apiEndPoint}q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(searchCityInfo);
+}
+
 function updateDate() {
   // Current date
   let now = new Date();
@@ -32,7 +63,7 @@ function updateDate() {
 }
 
 // search for the entered city
-function searchCity(event) {
+function getCityFromInput(event) {
   event.preventDefault();
   let enteredCityName = document.querySelector("#entered-city-name");
   let cityTitle = document.querySelector("#city-title");
@@ -117,7 +148,7 @@ function disableFahrenheitTempreture() {
 
 // update city name after pressing search
 let searchForm = document.querySelector(".search-form");
-searchForm.addEventListener("submit", searchCity);
+searchForm.addEventListener("submit", getCityFromInput);
 
 // change tempreture to Fahrenheit
 let fahrenheit = document.querySelector("#fahrenheit");
@@ -132,3 +163,6 @@ updateDate();
 
 // updates the tempreture
 updateTempreture();
+
+// updating data while loading the homepage
+updateDataOnLoad();
