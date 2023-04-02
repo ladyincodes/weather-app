@@ -177,11 +177,30 @@ function getPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
+  enableCurrentBtn();
 }
 
 // get current
 function getCurrentLocation() {
+  // disables current btn until fetching data
+  disableCurrentBtn();
   navigator.geolocation.getCurrentPosition(getPosition);
+}
+
+// disables current btn and starts loading until fetching data
+function disableCurrentBtn() {
+  let currentButton = document.querySelector("#current-btn");
+  currentButton.setAttribute("disabled", "");
+
+  currentButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Current`;
+}
+
+// enables current btn after fatched data
+function enableCurrentBtn() {
+  let currentButton = document.querySelector("#current-btn");
+  currentButton.removeAttribute("disabled");
+
+  currentButton.innerHTML = `Current`;
 }
 
 // update city name after pressing search
