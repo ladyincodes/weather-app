@@ -45,13 +45,16 @@
       <!---------- TODAY'S FORCAST FOR THE ENTERED CITY ---------->
       <div class="todays-forcast mt-4 mb-6">
         <div class="current-weather">
-          <h2 class="city-title display-6 mb-0" id="city-title">Auckland</h2>
-          <p class="weather-situation lead text-muted mt-0 pt-0">
+          <h2 class="city-title display-6 mb-0" id="city-title"></h2>
+          <p
+            class="weather-description lead text-muted mt-0 pt-0"
+            id="weather-description"
+          >
             Mostly Clear
           </p>
           <p class="display-tempreture display-1">
             <i class="fa-solid fa-moon"></i>
-            <span class="current-tempreture" id="current-tempreture">20</span>
+            <span class="current-tempreture" id="current-tempreture"></span>
             <span class="fs-5 tempreture-unit text-end">
               <a href="#" id="celsius">°C </a><span>| </span
               ><a href="#" id="fahrenheit">°F</a>
@@ -63,8 +66,10 @@
         <div class="observations lead text-muted text-end mt-1">
           <ul>
             <li class="current-date" id="current-date">Saturday 4 March</li>
-            <li class="precipitation">Precipitation: 0%</li>
-            <li class="wind">Wind: 28 km</li>
+            <li class="precipitation">
+              Precipitation: <span id="precipitation"></span>%
+            </li>
+            <li class="wind">Wind: <span id="wind"></span> km</li>
           </ul>
         </div>
       </div>

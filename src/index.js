@@ -1,34 +1,67 @@
 let apiKey = "7746bdeabca928cfedcad71e52fd9d66";
 let apiEndPoint = `https://api.openweathermap.org/data/2.5/weather?`;
 let units = "metric";
-let city = "New York";
+let city = "London";
 
 // update city name's field info
-function updateCurrentCityTitleField() {
+function updateCurrentCityTitleField(cityName) {
   let currentCityField = document.querySelector("#city-title");
-  currentCityField.innerHTML = city;
+  currentCityField.innerHTML = cityName;
 }
 
 // update tempreture's field info
-function updateCurrentTempretureField(tempreture) {
-  let currentTempretureField = document.querySelector("#current-tempreture");
-  currentTempretureField.innerHTML = tempreture;
+function updateTempretureField(tempreture) {
+  let tempretureField = document.querySelector("#current-tempreture");
+  tempretureField.innerHTML = tempreture;
+}
 
-  updateCurrentCityTitleField();
+// updates weather description fields info
+function updateDescriptionField(weatherDescription) {
+  let descriptionField = document.querySelector("#weather-description");
+  descriptionField.innerHTML = weatherDescription;
+}
+
+// update wind speed field information
+function updateWindField(windSpeed) {
+  let windSpeedField = document.querySelector("#wind");
+  windSpeedField.innerHTML = windSpeed;
 }
 
 // get city's information from openweathermap.org
 function searchCityInfo(response) {
+  console.log(response);
+  let cityName = response.data.name;
+  updateCurrentCityTitleField(cityName);
+
   let tempreture = Math.round(response.data.main.temp);
-  updateCurrentTempretureField(tempreture);
+  updateTempretureField(tempreture);
+
+  let weatherDescription = response.data.weather[0].main;
+  updateDescriptionField(weatherDescription);
+
+  let windSpeed = Math.round(response.data.wind.speed);
+  updateWindField(windSpeed);
+}
+
+// retrive data by API call
+function getData() {
+  let apiUrl = `${apiEndPoint}q=${city}&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
+}
+
+function canNotFindCity(error) {
+  alert("Please check the spell of your desired city and try again!");
 }
 
 // loads the page by a default city
 function updateDataOnLoad() {
-  let apiUrl = `${apiEndPoint}q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(searchCityInfo);
+  // tempreture unit on load is Celsius by default
+  disableCelsiusTempreture();
+  getData();
 }
 
+// updates current date and time on loading page
 function updateDate() {
   // Current date
   let now = new Date();
@@ -72,20 +105,12 @@ function getCityFromInput(event) {
 
   // check if the entered value isn't null
   if (cityName) {
-    // change the first char of the city name to uppercase
-    let formattedCityTitle =
-      cityName.charAt(0).toUpperCase() + cityName.slice(1);
-
-    // update city title
-    cityTitle.innerHTML = formattedCityTitle;
+    // update city variable
+    city = cityName;
+    getData();
   }
   // empty the search box
   enteredCityName.value = null;
-}
-
-// update the selecte city tempreture
-function updateTempreture() {
-  disableCelsiusTempreture();
 }
 
 // change current fahrenheit tempreture to celsius
@@ -160,9 +185,6 @@ celsius.addEventListener("click", updateToCelsius);
 
 // updates the current date and time on the page load
 updateDate();
-
-// updates the tempreture
-updateTempreture();
 
 // updating data while loading the homepage
 updateDataOnLoad();
