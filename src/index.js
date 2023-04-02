@@ -29,7 +29,6 @@ function updateWindField(windSpeed) {
 
 // get city's information from openweathermap.org
 function searchCityInfo(response) {
-  console.log(response);
   let cityName = response.data.name;
   updateCurrentCityTitleField(cityName);
 
@@ -171,9 +170,27 @@ function disableFahrenheitTempreture() {
   celsiusLink.addEventListener("click", updateToCelsius);
 }
 
+// retrive current position latitude and longitude
+function getPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
+}
+
+// get current
+function getCurrentLocation() {
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+
 // update city name after pressing search
 let searchForm = document.querySelector(".search-form");
 searchForm.addEventListener("submit", getCityFromInput);
+
+// get current location and update the weather
+let currentButton = document.querySelector("#current-btn");
+currentButton.addEventListener("click", getCurrentLocation);
 
 // change tempreture to Fahrenheit
 let fahrenheit = document.querySelector("#fahrenheit");
