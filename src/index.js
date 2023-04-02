@@ -50,7 +50,7 @@ function getData() {
   axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
 }
 
-function canNotFindCity(error) {
+function canNotFindCity() {
   alert("Please check the spell of your desired city and try again!");
 }
 
