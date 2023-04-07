@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(0deg, rgb(239, 171, 245, 0.2) 13.4%, rgb(196, 181, 249, 0.5) 76.3%);
+    background: linear-gradient(0deg, rgba(239, 171, 245, 0.2) 13.4%, rgba(196, 181, 249, 0.2) 76.3%);
     background-attachment: fixed;
 }
 
@@ -12,8 +12,12 @@ a {
     color: #000;
 }
 
+footer a {
+    color: rgb(245, 78, 162);
+}
+
 .selected_tempreture {
-    color: #0d6efd;
+    color: rgb(245, 78, 162);
     font-weight: bold;
 }
 
@@ -55,4 +59,29 @@ a {
 
 .tempreture-unit {
     position: absolute;
+}
+
+.btn-pink {
+    background: rgb(245, 78, 162);
+    border: 1px solid rgb(245, 78, 162);
+    color: #fff;
+    transition: all 200ms ease-in-out;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-pink:hover {
+    opacity: 0.8;
+}
+
+.btn-pink-secondary {
+    background: #fff;
+    color: rgb(245, 78, 162);
+    border: 1px solid rgb(245, 78, 162);
+    transition: all 200ms ease-in-out;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-pink-secondary:hover {
+    opacity: 0.8;
+    border: none;
 }
