@@ -12,6 +12,18 @@ a {
     color: #000;
 }
 
+input[type="text"],
+textarea {
+
+    background-color: rgba(196, 181, 249, 0.2);
+    border: none;
+
+}
+
+input[type="text"]::placeholder {
+    color: rgba(39, 33, 66, .4);
+}
+
 footer a {
     color: rgb(245, 78, 162);
 }
