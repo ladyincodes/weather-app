@@ -1,5 +1,6 @@
 body {
-    background: linear-gradient(89.9deg, #a1c4fd 47.9%, #c2e9fb 100%);
+    background: linear-gradient(0deg, rgb(239, 171, 245, 0.2) 13.4%, rgb(196, 181, 249, 0.5) 76.3%);
+    background-attachment: fixed;
 }
 
 ul {
