@@ -235,3 +235,6 @@ updateDataOnLoad();
 
 // TODO - remove redundant functions. For example, updateDataOnLoad, try to
 // use the searchSityInfo or whichever that is more general.
+
+// TODO - update the functionality of showing F or C units
+// check the classes to make the more efficient
