@@ -232,3 +232,6 @@ updateDataOnLoad();
 
 // TODO - add next days forcast
 // FIXME - change the colors of numeric elements according to theme
+
+// TODO - remove redundant functions. For example, updateDataOnLoad, try to
+// use the searchSityInfo or whichever that is more general.
