@@ -224,3 +224,6 @@ updateDate();
 
 // updating data while loading the homepage
 updateDataOnLoad();
+
+// TODO - update icon image
+// FIXME - remember to setAttribute for icon's alt
