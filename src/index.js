@@ -28,6 +28,13 @@ function updateWindField(windSpeed) {
   windSpeedField.innerHTML = `${windSpeed}%`;
 }
 
+function updateIconElement(weatherIcon, weatherDescription) {
+  let weatherIconElement = document.querySelector("#current-weather-icon");
+  let imgSrc = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+  weatherIconElement.setAttribute("src", imgSrc);
+  weatherIconElement.setAttribute("alt", weatherDescription);
+}
+
 // get city's information from openweathermap.org
 function searchCityInfo(response) {
   let cityName = response.data.name;
@@ -41,6 +48,10 @@ function searchCityInfo(response) {
 
   let windSpeed = Math.round(response.data.wind.speed);
   updateWindField(windSpeed);
+
+  let weatherIcon = response.data.weather[0].icon;
+  console.log(response);
+  updateIconElement(weatherIcon, weatherDescription);
 }
 
 // retrive data by API call

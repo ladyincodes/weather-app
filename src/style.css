@@ -47,14 +47,6 @@ footer a {
     font-size: 30px;
 }
 
-/* .todays-forcast {
-} */
-
-.observations {
-    margin: auto;
-    vertical-align: middle;
-}
-
 .observations::first-letter {
     text-transform: capitalize;
 }
@@ -68,12 +60,19 @@ footer a {
 
 .tempreture-unit {
     position: relative;
-    top: -45px;
+    top: -38px;
 }
 
 .current-tempreture {
     padding-left: 8px;
     padding-right: 8px;
+    font-size: 70px;
+    font-weight: 600;
+}
+
+.display-tempreture img {
+    position: relative;
+    top: -22px;
 }
 
 /*                                      */
@@ -107,9 +106,4 @@ footer a {
 #city-title {
     font-size: 40px;
     font-weight: 700;
-}
-
-.display-tempreture {
-    font-size: 70px;
-    font-weight: 600;
 }
