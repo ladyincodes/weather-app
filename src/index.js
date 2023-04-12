@@ -24,7 +24,7 @@ function updateDescriptionField(weatherDescription) {
 // update wind speed field information
 function updateWindField(windSpeed) {
   let windSpeedField = document.querySelector("#wind");
-  windSpeedField.innerHTML = windSpeed;
+  windSpeedField.innerHTML = `${windSpeed}%`;
 }
 
 // get city's information from openweathermap.org
