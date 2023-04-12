@@ -66,8 +66,8 @@ footer a {
 }
 
 .current-tempreture {
-    padding-left: 20px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /*                                      */
@@ -115,4 +115,8 @@ footer a {
 .display-tempreture {
     font-size: 70px;
     font-weight: 600;
+}
+
+.card-title {
+    color: rgba(33, 37, 42, 0.75);
 }

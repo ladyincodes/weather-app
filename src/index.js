@@ -2,6 +2,7 @@ let apiKey = "7746bdeabca928cfedcad71e52fd9d66";
 let apiEndPoint = `https://api.openweathermap.org/data/2.5/weather?`;
 let units = "metric";
 let city = "London";
+let celsiusTempreture = null;
 
 // update city name's field info
 function updateCurrentCityTitleField(cityName) {
@@ -32,8 +33,8 @@ function searchCityInfo(response) {
   let cityName = response.data.name;
   updateCurrentCityTitleField(cityName);
 
-  let tempreture = Math.round(response.data.main.temp);
-  updateTempretureField(tempreture);
+  celsiusTempreture = Math.round(response.data.main.temp);
+  updateTempretureField(celsiusTempreture);
 
   let weatherDescription = response.data.weather[0].main;
   updateDescriptionField(weatherDescription);
@@ -118,10 +119,8 @@ function updateToCelsius(event) {
   disableCelsiusTempreture();
 
   // update temreture from F to C
-  let currentTempreture = document.querySelector("#current-tempreture");
-  let tempreture = Number(currentTempreture.innerHTML);
-  let celsiusTempreture = Math.round((tempreture - 32) / 1.8);
-  currentTempreture.innerHTML = celsiusTempreture;
+  let currentTempratureElement = document.querySelector("#current-tempreture");
+  currentTempratureElement.innerHTML = celsiusTempreture;
 }
 
 // disable Celsius tempreture link when it's showing the Celsius unit
@@ -147,10 +146,9 @@ function updateToFahrenheit(event) {
   disableFahrenheitTempreture();
 
   // update temreture
-  let currentTempreture = document.querySelector("#current-tempreture");
-  let tempreture = Number(currentTempreture.innerHTML);
-  let fahrenheitTempreture = Math.round(tempreture * 1.8 + 32);
-  currentTempreture.innerHTML = fahrenheitTempreture;
+  let currentTempratureElement = document.querySelector("#current-tempreture");
+  let fahrenheitTempreture = Math.round(celsiusTempreture * 1.8 + 32);
+  currentTempratureElement.innerHTML = fahrenheitTempreture;
 }
 
 // disable Fahrenheit tempreture link when it's showing the in Fahrenheit unit
@@ -232,9 +230,3 @@ updateDataOnLoad();
 
 // TODO - add next days forcast
 // FIXME - change the colors of numeric elements according to theme
-
-// TODO - remove redundant functions. For example, updateDataOnLoad, try to
-// use the searchSityInfo or whichever that is more general.
-
-// TODO - update the functionality of showing F or C units
-// check the classes to make the more efficient
