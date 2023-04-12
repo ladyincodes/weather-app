@@ -61,7 +61,6 @@ function searchCityInfo(response) {
   updateWindField(windSpeed);
 
   let weatherIcon = response.data.condition.icon_url;
-  console.log(response);
   updateIconElement(weatherIcon, weatherDescription);
 }
 
