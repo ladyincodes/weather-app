@@ -1,6 +1,7 @@
 body {
     background: linear-gradient(0deg, rgba(239, 171, 245, 0.2) 13.4%, rgba(196, 181, 249, 0.2) 76.3%);
     background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
 }
 
 ul {
@@ -58,7 +59,12 @@ footer a {
     text-transform: capitalize;
 }
 
-
+.card-title,
+.observations,
+.next-days-tempreture {
+    color: rgba(33, 37, 42, 0.5);
+    font-weight: 500;
+}
 
 .tempreture-unit {
     position: relative;
@@ -66,8 +72,8 @@ footer a {
 }
 
 .current-tempreture {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 /*                                      */
@@ -98,15 +104,6 @@ footer a {
     border: none;
 }
 
-#city-title,
-#current-tempreture {
-    font-family: 'Poppins', sans-serif;
-}
-
-.next-days-forcast {
-    font-family: 'Poppins', sans-serif;
-}
-
 #city-title {
     font-size: 40px;
     font-weight: 700;
@@ -115,8 +112,4 @@ footer a {
 .display-tempreture {
     font-size: 70px;
     font-weight: 600;
-}
-
-.card-title {
-    color: rgba(33, 37, 42, 0.75);
 }
