@@ -46,6 +46,8 @@ function searchCityInfo(response) {
   let cityName = response.data.city;
   updateCurrentCityTitleField(cityName);
 
+  let timestamp = updateDateField(response.data.time * 1000);
+
   celsiusTempreture = Math.round(response.data.temperature.current);
   updateTempretureField(celsiusTempreture);
 
@@ -81,12 +83,11 @@ function updateDataOnLoad() {
 }
 
 // updates current date and time on loading page
-function updateDate() {
-  // Current date
-  let now = new Date();
-
-  // setup current day of the week
-  let weekDays = [
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let days = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -95,23 +96,23 @@ function updateDate() {
     "Friday",
     "Saturday",
   ];
-  let weekDay = weekDays[now.getDay()];
+  let day = days[date.getDay()];
 
-  // setup current hour and minute
-  let minute = now.getMinutes();
   if (minute < 10) {
     minute = `0${minute}`;
   }
 
-  let hour = now.getHours();
   if (hour < 10) {
     hour = `0${hour}`;
   }
-  let currentTime = `${hour}:${minute}`;
 
-  // update the current date and time using innerHTML
+  return `${day} ${hour}:${minute}`;
+}
+
+// update the latest update time
+function updateDateField(timestamp) {
   let currentDate = document.querySelector("#current-date");
-  currentDate.innerHTML = `${weekDay} ${currentTime}`;
+  currentDate.innerHTML = formatDate(timestamp);
 }
 
 // search for the entered city
@@ -235,9 +236,6 @@ fahrenheit.addEventListener("click", updateToFahrenheit);
 // change tempreture to Celsius
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", updateToCelsius);
-
-// updates the current date and time on the page load
-updateDate();
 
 // updating data while loading the homepage
 updateDataOnLoad();
