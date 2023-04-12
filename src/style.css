@@ -116,3 +116,7 @@ li::first-letter {
     font-size: 40px;
     font-weight: 700;
 }
+
+#author {
+    color: rgba(33, 37, 42, 0.5);
+}
