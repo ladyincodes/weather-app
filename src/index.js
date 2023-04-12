@@ -238,11 +238,3 @@ celsius.addEventListener("click", updateToCelsius);
 
 // updating data while loading the homepage
 updateDataOnLoad();
-
-// TODO - update icon image
-// FIXME - remember to setAttribute for icon's alt
-
-// TODO - update time according to the API's timestamp
-
-// TODO - add next days forcast
-// FIXME - change the colors of numeric elements according to theme
