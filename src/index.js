@@ -1,5 +1,5 @@
-let apiKey = "7746bdeabca928cfedcad71e52fd9d66";
-let apiEndPoint = `https://api.openweathermap.org/data/2.5/weather?`;
+let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
+let apiEndPoint = `https://api.shecodes.io/weather/v1/current?`;
 let units = "metric";
 let city = "London";
 let celsiusTempreture = null;
@@ -22,42 +22,50 @@ function updateDescriptionField(weatherDescription) {
   descriptionField.innerHTML = weatherDescription;
 }
 
+// update weather humidity field
+function updateHumidityField(humidity) {
+  let humidityField = document.querySelector("#humidity");
+  humidityField.innerHTML = `${humidity}%`;
+}
+
 // update wind speed field information
 function updateWindField(windSpeed) {
   let windSpeedField = document.querySelector("#wind");
-  windSpeedField.innerHTML = `${windSpeed}%`;
+  windSpeedField.innerHTML = `${windSpeed}km`;
 }
 
+// update icon img
 function updateIconElement(weatherIcon, weatherDescription) {
   let weatherIconElement = document.querySelector("#current-weather-icon");
-  let imgSrc = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-  weatherIconElement.setAttribute("src", imgSrc);
+  weatherIconElement.setAttribute("src", weatherIcon);
   weatherIconElement.setAttribute("alt", weatherDescription);
 }
 
 // get city's information from openweathermap.org
 function searchCityInfo(response) {
-  let cityName = response.data.name;
+  let cityName = response.data.city;
   updateCurrentCityTitleField(cityName);
 
-  celsiusTempreture = Math.round(response.data.main.temp);
+  celsiusTempreture = Math.round(response.data.temperature.current);
   updateTempretureField(celsiusTempreture);
 
-  let weatherDescription = response.data.weather[0].main;
+  let weatherDescription = response.data.condition.description;
   updateDescriptionField(weatherDescription);
+
+  let humidity = response.data.temperature.humidity;
+  updateHumidityField(humidity);
 
   let windSpeed = Math.round(response.data.wind.speed);
   updateWindField(windSpeed);
 
-  let weatherIcon = response.data.weather[0].icon;
+  let weatherIcon = response.data.condition.icon_url;
   console.log(response);
   updateIconElement(weatherIcon, weatherDescription);
 }
 
 // retrive data by API call
 function getData() {
-  let apiUrl = `${apiEndPoint}q=${city}&appid=${apiKey}&units=${units}`;
-
+  let apiUrl = `${apiEndPoint}query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
 }
 
@@ -183,7 +191,7 @@ function disableFahrenheitTempreture() {
 function getPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
   enableCurrentBtn();

@@ -47,7 +47,7 @@ footer a {
     font-size: 30px;
 }
 
-.observations::first-letter {
+li::first-letter {
     text-transform: capitalize;
 }
 
@@ -55,7 +55,7 @@ footer a {
 .observations,
 .next-days-tempreture {
     color: rgba(33, 37, 42, 0.5);
-    font-weight: 500;
+    font-weight: 300;
 }
 
 .tempreture-unit {
@@ -73,6 +73,15 @@ footer a {
 .display-tempreture img {
     position: relative;
     top: -22px;
+}
+
+.observations {
+    margin: auto;
+}
+
+.bolded-information {
+    color: rgb(245, 78, 162);
+    font-weight: bold;
 }
 
 /*                                      */

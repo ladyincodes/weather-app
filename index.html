@@ -67,7 +67,7 @@
 
       <!---------- TODAY'S FORCAST FOR THE ENTERED CITY ---------->
       <div class="todays-forcast row">
-        <div class="display-tempreture col-sm-8">
+        <div class="display-tempreture col-sm-7">
           <img class="" src="" alt="Clear" id="current-weather-icon" /><span
             class="current-tempreture"
             id="current-tempreture"
@@ -79,12 +79,15 @@
         </div>
 
         <!---------- OBSERVATIONS ABOUT CURRENT CITY ---------->
-        <div class="observations col-sm-4 text-end">
+        <div class="observations col-sm-5 text-end">
           <ul>
             <li><span id="current-date"></span></li>
             <li><span id="weather-description"></span></li>
-            <li>Humidity: <span id="humidity"></span></li>
-            <li>Wind: <span id="wind"></span></li>
+            <li>
+              Humidity: <span class="bolded-information" id="humidity"></span>,
+              Wind:
+              <span class="bolded-information" id="wind"></span>
+            </li>
           </ul>
         </div>
       </div>
