@@ -1,7 +1,7 @@
 let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
 let apiEndPoint = `https://api.shecodes.io/weather/v1/current?`;
 let units = "metric";
-let city = "London";
+let city = "Auckland";
 let celsiusTempreture = null;
 
 // update city name's field info
@@ -43,35 +43,41 @@ function updateIconElement(weatherIcon, weatherDescription) {
 
 // get city's information from openweathermap.org
 function searchCityInfo(response) {
-  let cityName = response.data.city;
-  updateCurrentCityTitleField(cityName);
+  // checks if there was any valid response data
+  if (response.data.status != "not_found") {
+    let cityName = response.data.city;
+    updateCurrentCityTitleField(cityName);
 
-  let timestamp = updateDateField(response.data.time * 1000);
+    let timestamp = updateDateField(response.data.time * 1000);
 
-  celsiusTempreture = Math.round(response.data.temperature.current);
-  updateTempretureField(celsiusTempreture);
+    celsiusTempreture = Math.round(response.data.temperature.current);
+    updateTempretureField(celsiusTempreture);
 
-  let weatherDescription = response.data.condition.description;
-  updateDescriptionField(weatherDescription);
+    let weatherDescription = response.data.condition.description;
+    updateDescriptionField(weatherDescription);
 
-  let humidity = response.data.temperature.humidity;
-  updateHumidityField(humidity);
+    let humidity = response.data.temperature.humidity;
+    updateHumidityField(humidity);
 
-  let windSpeed = Math.round(response.data.wind.speed);
-  updateWindField(windSpeed);
+    let windSpeed = Math.round(response.data.wind.speed);
+    updateWindField(windSpeed);
 
-  let weatherIcon = response.data.condition.icon_url;
-  updateIconElement(weatherIcon, weatherDescription);
+    let weatherIcon = response.data.condition.icon_url;
+    updateIconElement(weatherIcon, weatherDescription);
+  } else {
+    // if the data status was "not_found", it means there was no result
+    canNotFindCity();
+  }
 }
 
 // retrive data by API call
 function getData() {
   let apiUrl = `${apiEndPoint}query=${city}&key=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
+  axios.get(apiUrl).then(searchCityInfo);
 }
 
 function canNotFindCity() {
-  alert("Please check the spell of your desired city and try again!");
+  alert("Please enter a valid city!");
 }
 
 // loads the page by a default city
