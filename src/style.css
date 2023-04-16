@@ -88,9 +88,9 @@ hr {
     color: rgba(0, 0, 0, 0.2)
 }
 
-/*                                      */
+/****************************************/
 /* Search button and current button UIs */
-/*                                      */
+/****************************************/
 .btn-pink {
     background: rgb(245, 78, 162);
     border: 1px solid rgb(245, 78, 162);
@@ -114,6 +114,31 @@ hr {
 
 .btn-pink-secondary:hover {
     border: none;
+}
+
+/***************************************/
+/*       Weather forcast section       */
+/***************************************/
+.weather-forcast {
+    margin-top: 20px;
+    text-align: center;
+    color: #000;
+}
+
+.weather-forcast-date {
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+.weather-forcast-temperature {
+    font-size: 15px;
+    color: rgb(245, 78, 162);
+    font-weight: bold;
+
+}
+
+.weather-forcast-temperature-min {
+    opacity: 0.5;
 }
 
 #city-title {
