@@ -2,7 +2,6 @@ let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
 let apiEndPoint = `https://api.shecodes.io/weather/v1/current?`;
 let units = "metric";
 let city = "Auckland";
-let celsiusTempreture = null;
 
 // update city name's field info
 function updateCurrentCityTitleField(cityName) {
@@ -48,10 +47,9 @@ function searchCityInfo(response) {
     let cityName = response.data.city;
     updateCurrentCityTitleField(cityName);
 
-    let timestamp = updateDateField(response.data.time * 1000);
+    updateDateField(response.data.time * 1000);
 
-    celsiusTempreture = Math.round(response.data.temperature.current);
-    updateTempretureField(celsiusTempreture);
+    updateTempretureField(Math.round(response.data.temperature.current));
 
     let weatherDescription = response.data.condition.description;
     updateDescriptionField(weatherDescription);
@@ -64,6 +62,8 @@ function searchCityInfo(response) {
 
     let weatherIcon = response.data.condition.icon_url;
     updateIconElement(weatherIcon, weatherDescription);
+
+    getForcast(response.data.coordinates);
   } else {
     // if the data status was "not_found", it means there was no result
     canNotFindCity();
@@ -114,6 +114,60 @@ function formatDate(timestamp) {
   return `${day} ${hour}:${minute}`;
 }
 
+// formats time according to data forcast
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+
+  return day;
+}
+
+// adds the data forcast template into body
+function displayForcast(response) {
+  let forcast = response.data.daily;
+
+  let forcastElement = document.querySelector("#next-days-forcast");
+
+  let forcastHTML = `<div class="row text-center mt-4 mb-4">`;
+
+  forcast.forEach(function (forcastDay, index) {
+    if (index < 6) {
+      forcastHTML += `
+    <div class="col-2">
+      <div class="weather-forcast-date">${formatDay(forcastDay.time)}</div>
+      <img
+        src= "${forcastDay.condition.icon_url}"
+        alt="${forcastDay.condition.description}"
+        width="42"
+      />
+      <div class="weather-forcast-temperature">
+        <span data-name="temperature" class="weather-forcast-temperature-max">${Math.round(
+          forcastDay.temperature.maximum
+        )}</span>
+        <span data-name="temperature" class="weather-forcast-temperature-min">${Math.round(
+          forcastDay.temperature.minimum
+        )}</span>
+      </div>
+    </div>
+    `;
+    }
+  });
+
+  forcastHTML += `</div>`;
+
+  forcastElement.innerHTML = forcastHTML;
+}
+
+// gets forcast section data
+function getForcast(coordinates) {
+  let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
+  let units = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(displayForcast);
+}
+
 // update the latest update time
 function updateDateField(timestamp) {
   let currentDate = document.querySelector("#current-date");
@@ -144,8 +198,13 @@ function updateToCelsius(event) {
   disableCelsiusTempreture();
 
   // update temreture from F to C
-  let currentTempratureElement = document.querySelector("#current-tempreture");
-  currentTempratureElement.innerHTML = celsiusTempreture;
+  let currentTempratureElements = document.querySelectorAll(
+    "[data-name=temperature]"
+  );
+  currentTempratureElements.forEach((element) => {
+    let fahrenheitTempreture = Math.round((element.innerHTML - 32) / 1.8);
+    element.innerHTML = fahrenheitTempreture;
+  });
 }
 
 // disable Celsius tempreture link when it's showing the Celsius unit
@@ -171,9 +230,13 @@ function updateToFahrenheit(event) {
   disableFahrenheitTempreture();
 
   // update temreture
-  let currentTempratureElement = document.querySelector("#current-tempreture");
-  let fahrenheitTempreture = Math.round(celsiusTempreture * 1.8 + 32);
-  currentTempratureElement.innerHTML = fahrenheitTempreture;
+  let currentTempratureElements = document.querySelectorAll(
+    "[data-name=temperature]"
+  );
+  currentTempratureElements.forEach((element) => {
+    let fahrenheitTempreture = Math.round(element.innerHTML * 1.8 + 32);
+    element.innerHTML = fahrenheitTempreture;
+  });
 }
 
 // disable Fahrenheit tempreture link when it's showing the in Fahrenheit unit

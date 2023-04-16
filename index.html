@@ -70,6 +70,7 @@
           <img class="" src="" alt="Clear" id="current-weather-icon" /><span
             class="current-tempreture"
             id="current-tempreture"
+            data-name="temperature"
           ></span
           ><span class="fs-5 tempreture-unit text-end"
             ><a href="#" id="celsius">°C</a><span id="seperator"> | </span
@@ -92,22 +93,7 @@
       </div>
 
       <!---------- FORCAST NEXT 6 DAYS ---------->
-      <div class="next-days-forcast mb-2">
-        <div class="row text-center mt-4 mb-4">
-          <div class="col-2">
-            <div class="weather-forcast-date">Sat</div>
-            <img
-              src="https://openweathermap.org/img/wn/50n@2x.png"
-              alt=""
-              width="42"
-            />
-            <div class="weather-forcast-temperature">
-              <span class="weather-forcast-temperature-max">12</span>
-              <span class="weather-forcast-temperature-min">18</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="next-days-forcast mb-2" id="next-days-forcast"></div>
 
       <hr class="mt-4" />
 
