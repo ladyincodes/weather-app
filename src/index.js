@@ -178,7 +178,6 @@ function updateDateField(timestamp) {
 function getCityFromInput(event) {
   event.preventDefault();
   let enteredCityName = document.querySelector("#entered-city-name");
-  let cityTitle = document.querySelector("#city-title");
 
   let cityName = enteredCityName.value.trim();
 
