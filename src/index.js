@@ -1,5 +1,3 @@
-let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
-let apiEndPoint = `https://api.shecodes.io/weather/v1/current?`;
 let units = "metric";
 let city = "Auckland";
 
@@ -30,7 +28,11 @@ function updateHumidityField(humidity) {
 // update wind speed field information
 function updateWindField(windSpeed) {
   let windSpeedField = document.querySelector("#wind");
-  windSpeedField.innerHTML = `${windSpeed}km`;
+  if (units == "metric") {
+    windSpeedField.innerHTML = `${windSpeed}km`;
+  } else {
+    windSpeedField.innerHTML = `${windSpeed}mh`;
+  }
 }
 
 // update icon img
@@ -72,6 +74,8 @@ function searchCityInfo(response) {
 
 // retrive data by API call
 function getData() {
+  let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
+  let apiEndPoint = `https://api.shecodes.io/weather/v1/current?`;
   let apiUrl = `${apiEndPoint}query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(searchCityInfo);
 }
@@ -162,7 +166,6 @@ function displayForcast(response) {
 // gets forcast section data
 function getForcast(coordinates) {
   let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
-  let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayForcast);
@@ -196,6 +199,9 @@ function updateToCelsius(event) {
   event.preventDefault();
   disableCelsiusTempreture();
 
+  // changes the default unit system to metric for future api calls
+  units = "metric";
+
   // update temreture from F to C
   let currentTempratureElements = document.querySelectorAll(
     "[data-name=temperature]"
@@ -228,6 +234,9 @@ function updateToFahrenheit(event) {
   event.preventDefault();
   disableFahrenheitTempreture();
 
+  // changes the default unit system to imperial for future api calls
+  units = "imperial";
+
   // update temreture
   let currentTempratureElements = document.querySelectorAll(
     "[data-name=temperature]"
@@ -259,6 +268,7 @@ function disableFahrenheitTempreture() {
 function getPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
+  let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(searchCityInfo).catch(canNotFindCity);
