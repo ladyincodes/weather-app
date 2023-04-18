@@ -1,5 +1,6 @@
 let units = "metric";
-let city = "Auckland";
+let city = "Paris";
+let wind = null;
 
 // update city name's field info
 function updateCurrentCityTitleField(cityName) {
@@ -28,10 +29,11 @@ function updateHumidityField(humidity) {
 // update wind speed field information
 function updateWindField(windSpeed) {
   let windSpeedField = document.querySelector("#wind");
-  if (units == "metric") {
-    windSpeedField.innerHTML = `${windSpeed}km`;
+  wind = windSpeed;
+  if (units === "metric") {
+    windSpeedField.innerHTML = `${windSpeed}km/h`;
   } else {
-    windSpeedField.innerHTML = `${windSpeed}mh`;
+    windSpeedField.innerHTML = `${windSpeed}mph`;
   }
 }
 
@@ -77,6 +79,7 @@ function getData() {
   let apiKey = "fb62bofac6t015b438385b08ffd2a8bd";
   let apiEndPoint = `https://api.shecodes.io/weather/v1/current?`;
   let apiUrl = `${apiEndPoint}query=${city}&key=${apiKey}&units=${units}`;
+  console.log(apiUrl);
   axios.get(apiUrl).then(searchCityInfo);
 }
 
@@ -199,9 +202,6 @@ function updateToCelsius(event) {
   event.preventDefault();
   disableCelsiusTempreture();
 
-  // changes the default unit system to metric for future api calls
-  units = "metric";
-
   // update temreture from F to C
   let currentTempratureElements = document.querySelectorAll(
     "[data-name=temperature]"
@@ -210,6 +210,14 @@ function updateToCelsius(event) {
     let fahrenheitTempreture = Math.round((element.innerHTML - 32) / 1.8);
     element.innerHTML = fahrenheitTempreture;
   });
+
+  // updates wind field
+  let windSpeedField = document.querySelector("#wind");
+  wind = Math.round(wind * 1.609);
+  windSpeedField.innerHTML = `${wind}km/h`;
+
+  // changes the default unit system to metric for future api calls
+  units = "metric";
 }
 
 // disable Celsius tempreture link when it's showing the Celsius unit
@@ -234,9 +242,6 @@ function updateToFahrenheit(event) {
   event.preventDefault();
   disableFahrenheitTempreture();
 
-  // changes the default unit system to imperial for future api calls
-  units = "imperial";
-
   // update temreture
   let currentTempratureElements = document.querySelectorAll(
     "[data-name=temperature]"
@@ -245,6 +250,14 @@ function updateToFahrenheit(event) {
     let fahrenheitTempreture = Math.round(element.innerHTML * 1.8 + 32);
     element.innerHTML = fahrenheitTempreture;
   });
+
+  // updates wind field
+  let windSpeedField = document.querySelector("#wind");
+  wind = Math.round(wind / 1.609);
+  windSpeedField.innerHTML = `${wind}mph`;
+
+  // changes the default unit system to imperial for future api calls
+  units = "imperial";
 }
 
 // disable Fahrenheit tempreture link when it's showing the in Fahrenheit unit

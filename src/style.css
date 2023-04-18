@@ -73,7 +73,8 @@ li::first-letter {
 
 .bolded-information {
     color: rgb(245, 78, 162);
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .card-title,
